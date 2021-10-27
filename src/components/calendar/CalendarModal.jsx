@@ -7,8 +7,8 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+    /* marginRight: "-50%",
+    transform: "translate(-50%, -50%)", */
   },
 };
 
@@ -37,7 +37,7 @@ const CalendarModal = () => {
         contentLabel="Example Modal"
       >
 
-          <h1>Hola mundo 00000000000000000000000000</h1>
+          <h1>Hola mundo </h1>
           <hr />
           <span>Hola de nuevo</span>
       </Modal>
