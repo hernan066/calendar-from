@@ -18,3 +18,6 @@ https://www.npmjs.com/package/react-big-calendar
 
 momentjs
 https://momentjs.com/
+
+react-modal
+https://www.npmjs.com/package/react-modal
