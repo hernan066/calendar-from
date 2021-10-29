@@ -1,40 +1,100 @@
-.ReactModalPortal > div{
-    opacity: 0;
+.ReactModalPortal > div {
+  opacity: 0;
 }
 
 .ReactModalPortal .ReactModal__Overlay {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    transition: opacity .2s ease-in-out;
-    z-index: 999;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 999;
 }
 
 .modal-fondo {
-    background-color: rgba(0, 0, 0, 0.3);
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
 }
 
 .ReactModalPortal .ReactModal__Overlay--after-open {
-    opacity: 1;
+  opacity: 1;
 }
 
 .ReactModalPortal .ReactModal__Overlay--before-close {
-    opacity: 0;
+  opacity: 0;
 }
 
- .modal {
-   
-    background: white;
+.modal {
+  background: white;
+  border-radius: 5px;
+  color: rgb(51, 51, 51);
+  display: inline;
+  max-height: 620px;
+  max-width: 500px;
+  width: 300px;
+  outline: none;
+  padding: 30px;
+}
+
+/* Datepicker */
+.react-datetime-picker input:focus {
+  outline: none;
+}
+
+.react-datetime-picker__wrapper {
+  border: 0px solid gray !important;
+}
+
+/* form modal */
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.modal__form-group {
+  width: 100%;
+  
+}
+
+.modal__form-control {
+  display: flex;
+  flex-direction: column;
+  
+  
+  
+  border-radius: 5px;
+  border: 1px solid $dark-grey;
+  margin-bottom: 10px;
+}
+
+
+.modal__form textarea,
+.modal__form input {
+    padding: 15px;
+    font-size: 16px;
     border-radius: 5px;
-    color: rgb(51, 51, 51);
-    display: inline;
-    max-height: 620px;
-    max-width: 500px;
-    outline: none;
-    padding: 10px;
-} 
+    width: 100%;
+    box-sizing:border-box;
+    &:focus {
+        
+         outline: #ccc solid 2px;
+     }
+ 
+}
+.modal__title{
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.modal__btn{
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+}
