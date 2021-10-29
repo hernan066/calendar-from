@@ -21,18 +21,44 @@ const now = moment().minutes(0).seconds(0).add(1, "hours");
 const nowPlus1 = now.clone().add(1, "hours");
 
 const CalendarModal = () => {
-  
-  
   const [dateStart, setDateStart] = useState(now.toDate());
   const [dateEnd, setDateEnd] = useState(nowPlus1.toDate());
+
+  const [formValues, setFormValues] = useState({
+    title: "Evento",
+    notes: "",
+    start: now.toDate(),
+    end: nowPlus1.toDate(),
+  });
+
+  const { title, notes } = formValues;
 
   const closeModal = () => {};
 
   const handleStartDateChange = (date) => {
     setDateStart(date);
+    setFormValues({
+      ...formValues,
+      start: date
+    })
   };
   const handleEndDateChange = (date) => {
     setDateEnd(date);
+    setFormValues({
+      ...formValues,
+      end: date
+    })
+  };
+
+  const handleInputChange =({target})=>{
+    setFormValues({
+      ...formValues,
+      [target.name]: target.value
+    })
+  };
+  const handleSubmitForm = (e)=>{
+    e.preventDefault();
+    console.log(formValues);
   };
 
   return (
@@ -48,7 +74,10 @@ const CalendarModal = () => {
     >
       <h3 className="modal__title"> Nuevo evento </h3>
       <label className="modal__input-label">Inicio evento</label>
-      <form className="modal__form">
+      <form 
+        className="modal__form"
+        onSubmit={handleSubmitForm}
+      >
         <div className="modal__form-group">
           <DateTimePicker
             onChange={handleStartDateChange}
@@ -56,12 +85,12 @@ const CalendarModal = () => {
             className="modal__form-control btn-block"
           />
         </div>
-        
+
         <div className="modal__form-group">
-        <label className="modal__input-label">Fin evento</label>
+          <label className="modal__input-label">Fin evento</label>
           <DateTimePicker
             onChange={handleEndDateChange}
-            value={dateEnd} 
+            value={dateEnd}
             minDate={dateStart}
             className="modal__form-control btn-block"
           />
@@ -69,25 +98,25 @@ const CalendarModal = () => {
 
         <hr />
         <div className="modal__form-group">
-        <label className="modal__input-label">Evento</label>
+          <label className="modal__input-label">Evento</label>
           <input
             type="text"
             className="modal__form-control in-title"
             placeholder="Título del evento"
             name="title"
             autoComplete="off"
-            /*  value={title}
-            onChange={handleInputChange} */
+            value={title}
+            onChange={handleInputChange}
           />
-         
+
           <textarea
             type="text"
             className="modal__form-control"
             placeholder="Notas"
             rows="5"
             name="notes"
-            /*  value={notes}
-            onChange={handleInputChange} */
+            value={notes}
+            onChange={handleInputChange}
           ></textarea>
         </div>
 
