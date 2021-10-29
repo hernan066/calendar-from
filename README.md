@@ -27,3 +27,12 @@ https://www.npmjs.com/package/react-datetime-picker
 
 sweetalert2
 https://sweetalert2.github.io/
+
+Redux
+https://es.redux.js.org/
+
+React redux
+https://react-redux.js.org/
+
+React redux thunk
+https://github.com/reduxjs/redux-thunk
