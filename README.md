@@ -22,5 +22,5 @@ https://momentjs.com/
 react-modal
 https://www.npmjs.com/package/react-modal
 
-React Date Picker
-https://www.npmjs.com/package/react-datepicker
+react-datetime-picker
+https://www.npmjs.com/package/react-datetime-picker

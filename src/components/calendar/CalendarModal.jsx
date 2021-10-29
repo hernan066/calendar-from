@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DateTimePicker from "react-datetime-picker";
+
 import moment from "moment";
 
 const customStyles = {
@@ -18,25 +18,23 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 const now = moment().minutes(0).seconds(0).add(1, "hours");
-
-
+const nowPlus1 = now.clone().add(1, "hours");
 
 const CalendarModal = () => {
   
   
   const [dateStart, setDateStart] = useState(now.toDate());
-  
-  
-  
+  const [dateEnd, setDateEnd] = useState(nowPlus1.toDate());
+
   const closeModal = () => {};
 
   const handleStartDateChange = (date) => {
     setDateStart(date);
   };
   const handleEndDateChange = (date) => {
-    console.log(date);
+    setDateEnd(date);
   };
- 
+
   return (
     <Modal
       isOpen={true}
@@ -49,57 +47,51 @@ const CalendarModal = () => {
       contentLabel="Example Modal"
     >
       <h3 className="modal__title"> Nuevo evento </h3>
-      
-      <form className="modal__form" >
+      <label className="modal__input-label">Inicio evento</label>
+      <form className="modal__form">
         <div className="modal__form-group">
-          
-          <DatePicker
+          <DateTimePicker
             onChange={handleStartDateChange}
             value={dateStart}
-            className="modal__form-control"
-            placeholderText="Fecha y hora inicio"
+            className="modal__form-control btn-block"
           />
         </div>
-
+        
         <div className="modal__form-group">
-          
-          <DatePicker
+        <label className="modal__input-label">Fin evento</label>
+          <DateTimePicker
             onChange={handleEndDateChange}
-           /*  value={dateEnd} */
+            value={dateEnd} 
             minDate={dateStart}
-            className="modal__form-control"
-            placeholderText="Fecha y hora fin"
-          /> 
+            className="modal__form-control btn-block"
+          />
         </div>
 
         <hr />
         <div className="modal__form-group">
-          
+        <label className="modal__input-label">Evento</label>
           <input
             type="text"
-            className="modal__form-control"
+            className="modal__form-control in-title"
             placeholder="Título del evento"
             name="title"
             autoComplete="off"
-           /*  value={title}
+            /*  value={title}
             onChange={handleInputChange} */
           />
+         
           <textarea
             type="text"
             className="modal__form-control"
             placeholder="Notas"
             rows="5"
             name="notes"
-           /*  value={notes}
+            /*  value={notes}
             onChange={handleInputChange} */
           ></textarea>
-          
         </div>
 
-        <div className="modal__form-group">
-          
-          
-        </div>
+        <div className="modal__form-group"></div>
 
         <button type="submit" className="modal__btn btn btn-danger btn-block">
           <i className="far fa-save"></i>
