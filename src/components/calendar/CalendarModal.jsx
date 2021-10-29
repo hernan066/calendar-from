@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import DateTimePicker from "react-datetime-picker";
 
 import moment from "moment";
+import Swal from 'sweetalert2'
 
 const customStyles = {
   content: {
@@ -23,6 +24,7 @@ const nowPlus1 = now.clone().add(1, "hours");
 const CalendarModal = () => {
   const [dateStart, setDateStart] = useState(now.toDate());
   const [dateEnd, setDateEnd] = useState(nowPlus1.toDate());
+  const [titleValid, setTitleValid] = useState(true);
 
   const [formValues, setFormValues] = useState({
     title: "Evento",
@@ -31,7 +33,7 @@ const CalendarModal = () => {
     end: nowPlus1.toDate(),
   });
 
-  const { title, notes } = formValues;
+  const { title, notes, start, end } = formValues;
 
   const closeModal = () => {};
 
@@ -58,7 +60,22 @@ const CalendarModal = () => {
   };
   const handleSubmitForm = (e)=>{
     e.preventDefault();
-    console.log(formValues);
+    
+    const momentStart = moment(start);
+    const momentEnd = moment(end);
+
+    if(momentStart.isSameOrAfter(momentEnd)){
+      Swal.fire('Error', 'La fecha de fin del evento debe ser posterior a la fecha de inicio', 'error')
+      return;
+    };
+
+    if(title.trim().length === 0){
+      setTitleValid(false);
+      return;
+    };
+
+    setTitleValid(true);
+    closeModal();
   };
 
   return (
@@ -119,8 +136,10 @@ const CalendarModal = () => {
             onChange={handleInputChange}
           ></textarea>
         </div>
-
-        <div className="modal__form-group"></div>
+        {
+          !titleValid && <span className="modal__error"><i className="fas fa-exclamation-circle"></i> El titulo no puede estar vacio</span>
+        }
+        
 
         <button type="submit" className="modal__btn btn btn-danger btn-block">
           <i className="far fa-save"></i>

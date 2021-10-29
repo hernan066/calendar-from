@@ -24,3 +24,6 @@ https://www.npmjs.com/package/react-modal
 
 react-datetime-picker
 https://www.npmjs.com/package/react-datetime-picker
+
+sweetalert2
+https://sweetalert2.github.io/
