@@ -11,7 +11,7 @@
 }
 
 .modal-fondo {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   bottom: 0;
   left: 0;
   right: 0;
@@ -86,6 +86,10 @@
          outline: #ccc solid 2px;
      }
  
+}
+.modal__form textarea{
+    resize: none;
+    height: 100px;
 }
 .modal__title{
     text-align: center;
