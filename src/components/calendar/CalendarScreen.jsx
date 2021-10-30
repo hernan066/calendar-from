@@ -7,7 +7,7 @@ import "moment/locale/es";
 import { messages } from "../../helpers/calendar-es";
 import CalendarEvent from "./CalendarEvent";
 import CalendarModal from "./CalendarModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { uiOpenModal } from "../../actions/ui";
 import { eventSetActive } from "../../actions/events";
 import { AddNewFab } from "../ui/AddNewFa";
@@ -16,24 +16,14 @@ moment.locale("es");
 
 const localizer = momentLocalizer(moment);
 
-const events = [
-  {
-    title: "Cumpleaños Belen",
-    start: moment().toDate(),
-    end: moment().add(2, "hours").toDate(),
-    bgcolor: "#f56954",
-    notes: "Comprar pastel",
-    user: {
-      _id: "123456",
-      name: "Hernan",
-    },
-  },
-];
+
 
 const CalendarScreen = () => {
   
     
     const dispatch = useDispatch()
+
+    const {events} = useSelector(state => state.calendar)
     
     const [lastView, setLastView] = useState(localStorage.getItem("lastView") || "month");
  
