@@ -44,6 +44,14 @@ export const calendaReducer = (state = initialState, action) => {
                   event.id === action.payload.id ? action.payload : event
                 ) 
               }
+          case types.eventDeleted:
+              return {
+                ...state,
+                events: state.events.filter(
+                  e => (e.id !== state.activeEvent.id )
+                ),
+                activeEvent: null 
+              }
         
         default:
         return state;

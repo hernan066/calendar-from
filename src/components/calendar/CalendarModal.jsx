@@ -6,7 +6,12 @@ import moment from "moment";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { uiCloseModal } from "../../actions/ui";
-import { eventAddNew, eventClearActiveEvent, eventUpdate } from "../../actions/events";
+import {
+  eventAddNew,
+  eventClearActiveEvent,
+  eventDelete,
+  eventUpdate,
+} from "../../actions/events";
 
 const customStyles = {
   content: {
@@ -104,7 +109,7 @@ const CalendarModal = () => {
       dispatch(eventUpdate(formValues));
       console.log(formValues);
     } else {
-      //si no hay evento activo, se crea uno nuevo  
+      //si no hay evento activo, se crea uno nuevo
       dispatch(
         eventAddNew({
           ...formValues,
@@ -121,6 +126,11 @@ const CalendarModal = () => {
     closeModal();
   };
 
+  const handleDeleteEvent = () => {
+    dispatch(eventDelete());
+    closeModal();
+  }
+
   return (
     <Modal
       isOpen={modalOpen}
@@ -132,7 +142,12 @@ const CalendarModal = () => {
       overlayClassName="modal-fondo"
       contentLabel="Example Modal"
     >
-      <h3 className="modal__title"> Nuevo evento </h3>
+      {activeEvent === null ? (
+        <h3 className="modal__title"> Nuevo evento </h3>
+      ) : (
+        <h3 className="modal__title"> Editar evento </h3>
+      )}
+
       <label className="modal__input-label">Inicio evento</label>
       <form className="modal__form" onSubmit={handleSubmitForm}>
         <div className="modal__form-group">
@@ -183,16 +198,26 @@ const CalendarModal = () => {
           </span>
         )}
 
-        <div className="modal__buttons">
-          <button type="submit" className="modal__btn btn btn-success">
+        {activeEvent === null ? (
+          <button
+            type="submit"
+            className="modal__btn-new btn btn-success btn-block"
+          >
             <i className="far fa-save"></i>
             <span> Guardar</span>
           </button>
-          <button type="submit" className="modal__btn btn btn-delete">
-            <i className="fas fa-trash-alt"></i>
-            <span> Borrar</span>
-          </button>
-        </div>
+        ) : (
+          <div className="modal__buttons">
+            <button type="submit" className="modal__btn-edit btn btn-success">
+              <i className="far fa-save"></i>
+              <span> Guardar</span>
+            </button>
+            <button onClick={handleDeleteEvent } className="modal__btn-edit btn btn-delete">
+              <i className="fas fa-trash-alt"></i>
+              <span> Borrar</span>
+            </button>
+          </div>
+        )}
       </form>
     </Modal>
   );

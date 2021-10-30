@@ -86,12 +86,17 @@
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-.modal__btn {
+.modal__btn-new,
+.modal__btn-edit {
   padding: 15px;
   font-size: 16px;
   border-radius: 5px;
+  
+}
+.modal__btn-edit{
   width: 50%;
 }
+
 .in-title{
   padding: 4px;
 }
