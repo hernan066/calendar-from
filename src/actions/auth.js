@@ -73,4 +73,14 @@ const login = (user)=>({
     type: types.authLogin,
     payload: user
         
-}) 
+});
+
+export const starLogout = ()=>{
+    return (dispatch)=>{
+        localStorage.clear();
+        dispatch( logout());
+       
+    }
+};
+
+const logout= ()=>({type: types.authLogout});
