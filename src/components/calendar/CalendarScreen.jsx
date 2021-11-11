@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../ui/Navbar";
 
 import { Calendar, momentLocalizer } from "react-big-calendar";
@@ -9,7 +9,7 @@ import CalendarEvent from "./CalendarEvent";
 import CalendarModal from "./CalendarModal";
 import { useDispatch, useSelector } from "react-redux";
 import { uiOpenModal } from "../../actions/ui";
-import { eventSetActive } from "../../actions/events";
+import { eventSetActive, eventStartLoading } from "../../actions/events";
 import { AddNewFab } from "../ui/AddNewFa";
 
 moment.locale("es");
@@ -24,6 +24,7 @@ const CalendarScreen = () => {
     const dispatch = useDispatch()
 
     const {events} = useSelector(state => state.calendar)
+    const {uid} = useSelector(state => state.auth)
     
     const [lastView, setLastView] = useState(localStorage.getItem("lastView") || "month");
  
@@ -34,6 +35,10 @@ const CalendarScreen = () => {
       console.log('doble clic')
       dispatch(uiOpenModal());
     }; */
+
+    useEffect(() => {
+      dispatch(eventStartLoading());
+    }, [dispatch])
   
     const onSelectEvent = (e) => {
        console.log(e);  
@@ -48,8 +53,10 @@ const CalendarScreen = () => {
     };
   
     const eventStyleGetter = (event, start, end, isSelected) => {
-    const style = {
-      backgroundColor: "#367cf7",
+    
+    
+      const style = {
+      backgroundColor: (uid === event.user._id)  ? "#367cf7" : '#464660',
       borderRadius: "0px",
       opacity: 0.8,
       display: "block",

@@ -1,22 +1,22 @@
-import moment from "moment";
+
 import { types } from "../types/types";
+
+/* {
+  id: new Date().getTime(),
+  title: "Cumpleaños Belen",
+  start: moment().toDate(),
+  end: moment().add(2, "hours").toDate(),
+  
+  notes: "Comprar pastel",
+  user: {
+    _id: "123456",
+    name: "Hernan",
+  },
+}, */
 
 
 const initialState = {
-    events: [{
-        id: new Date().getTime(),
-        title: "Cumpleaños Belen",
-        start: moment().toDate(),
-        end: moment().add(2, "hours").toDate(),
-        bgcolor: "#f56954",
-        notes: "Comprar pastel",
-        user: {
-          _id: "123456",
-          name: "Hernan",
-        },
-      },
-
-    ],
+    events: [],
     activeEvent: null
 };
 
@@ -52,6 +52,11 @@ export const calendaReducer = (state = initialState, action) => {
                 ),
                 activeEvent: null 
               }
+          case types.eventLoaded:
+            return{
+              ...state, 
+              events: [...action.payload]
+            }
         
         default:
         return state;
