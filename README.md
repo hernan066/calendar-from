@@ -1,17 +1,7 @@
-# Calendario React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1> Calendar React </h1>
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-<hr />
-# Calendario React
-
-##Librerias usadas
+<h2>Librerias usadas </h2>
 
 react-big-calendar
 https://www.npmjs.com/package/react-big-calendar
